@@ -33,10 +33,11 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#FFFFFF"
         android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="@+id/topview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.137"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="47dp" />
+        app:layout_constraintTop_toTopOf="@+id/topview" />
 
     <EditText
         android:id="@+id/inputName"

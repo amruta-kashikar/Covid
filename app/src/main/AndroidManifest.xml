@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Covid">
-        <activity android:name=".ResetPwd"></activity>
+        <activity android:name=".pwdUpdated"></activity>
+        <activity android:name=".Otppage" />
+        <activity android:name=".ResetPwd" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".SigninHospital" />
         <activity android:name=".RequestBed" />
@@ -23,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
