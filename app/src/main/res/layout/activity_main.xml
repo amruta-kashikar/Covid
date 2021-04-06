@@ -151,6 +151,18 @@
             android:text="Nagpur Corona"
             android:textSize="24dp" />
 
+        <Button
+            android:id="@+id/btnRequest"
+            android:layout_width="307dp"
+            android:layout_height="wrap_content"
+            android:text="request for bed" />
+
+        <Button
+            android:id="@+id/loginbtn"
+            android:layout_width="69dp"
+            android:layout_height="86dp"
+            android:text="login" />
+
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

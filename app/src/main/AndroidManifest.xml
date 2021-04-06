@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Covid">
-        <activity android:name=".pwdUpdated"></activity>
+        <activity android:name=".HospitalDashboard"></activity>
+        <activity android:name=".pwdUpdated" />
         <activity android:name=".Otppage" />
         <activity android:name=".ResetPwd" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".SigninHospital" />
         <activity android:name=".RequestBed" />
         <activity android:name=".PatientDashboard" />
-        <activity android:name=".HospitalDashboard" />
         <activity android:name=".LoginHospital" />
         <activity android:name=".MainActivity">
             <intent-filter>

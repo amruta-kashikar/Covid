@@ -6,4 +6,152 @@
     android:layout_height="match_parent"
     tools:context=".PatientDashboard">
 
+    <View
+        android:id="@+id/view10"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="346dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/armata"
+        android:gravity="center"
+        android:text="corona dashboard"
+        android:textAllCaps="true"
+        android:textColor="#1646B5"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/view10"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="@+id/view10"
+        app:layout_constraintTop_toTopOf="@+id/view10" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/armata"
+        android:text="covid-19 beds"
+        android:textAllCaps="true"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/view10"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/view10"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Availability"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="147dp" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border1"
+        android:backgroundTint="#33f293"
+        android:padding="2dp"
+        android:text="50 or more beds"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="147dp" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border2"
+        android:backgroundTint="#dbed3b"
+        android:padding="2dp"
+        android:text="Less than 50 beds"
+        tools:layout_editor_absoluteX="195dp"
+        tools:layout_editor_absoluteY="147dp" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Beds"
+        android:padding="3dp"
+        android:backgroundTint="#fc655b"
+        android:background="@drawable/border3"
+        tools:layout_editor_absoluteX="324dp"
+        tools:layout_editor_absoluteY="147dp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        android:background="@color/white"
+        android:layout_margin="15dp"
+        tools:layout_editor_absoluteY="225dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000">
+
+            <TextView
+                android:layout_width="93dp"
+                android:layout_height="match_parent"
+                android:padding="10sp"
+                android:text="Hospital"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="10sp"
+                android:text="Last Updated"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:padding="10sp"
+                android:text="Total"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:layout_width="99dp"
+                android:layout_height="match_parent"
+                android:padding="10sp"
+                android:text="Vacant"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="23dp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
