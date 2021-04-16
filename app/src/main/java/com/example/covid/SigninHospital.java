@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,10 +29,10 @@ import java.util.Map;
 
 public class SigninHospital extends AppCompatActivity {
     EditText nameHospital,phoneHospital,pwdHospital,emailHospital;
-    Intent linklogin;
+    Intent linklogin,patientdash;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
-    MaterialButton btnSignIn;
+    private Button btnSignIn;
     ProgressBar progressBar;
 
     @Override
@@ -44,6 +45,7 @@ public class SigninHospital extends AppCompatActivity {
         emailHospital = findViewById(R.id.emailHospital);
         btnSignIn = findViewById(R.id.btnSignIn);
         linklogin = new Intent(this,LoginHospital.class);
+        patientdash = new Intent(this,PatientDashboard.class);
         progressBar = findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -51,12 +53,11 @@ public class SigninHospital extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerUser();
-                finish();
-                startActivity(getIntent());
-
+                //finish();
             }
         });
     }
+
     public void goto_login(View v)
     {
         TextView Linklogin = (TextView) findViewById(R.id.loginlink);
@@ -107,26 +108,19 @@ public class SigninHospital extends AppCompatActivity {
             pwdHospital.requestFocus();
             return;
         }
-        Map<String, Object> user = new HashMap<>();
-        user.put("Name",name);
-        user.put("Phone",phone);
-        user.put("Email",email);
-        user.put("Password",pwd);
-        db.collection("user")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(SigninHospital.this,"Hospital registered successfully",Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+        mAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                Toast.makeText(SigninHospital.this,"Failed to register hospital",Toast.LENGTH_SHORT).show();
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(SigninHospital.this, "Hospital registered successfully", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(SigninHospital.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        //progressBar.setVisibility(View.VISIBLE);
-        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+        //startActivity(patientdash);
+
 
 
     }
