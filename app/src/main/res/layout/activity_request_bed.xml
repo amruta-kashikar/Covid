@@ -109,6 +109,7 @@
             android:layout_width="273dp"
             android:layout_height="44dp"
             android:layout_marginTop="36dp"
+            android:fontFamily="@font/poppins"
             android:text="Request For Bed"
             android:textColor="#FFFFFF"
             android:textSize="33sp"

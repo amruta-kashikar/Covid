@@ -24,7 +24,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
     }
     public void updateData(int position){
         Bundle bundle = new Bundle();
-        bundle.putString("t5",datalist.get(position).getVacant());
+        bundle.putInt("t5",datalist.get(position).getVacant());
     }
 
     @NonNull
@@ -40,7 +40,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
         holder.t2.setText(datalist.get(position).getPhone());
         holder.t3.setText(datalist.get(position).getEmail());
         holder.t4.setText(datalist.get(position).getTotal());
-        holder.t5.setText(datalist.get(position).getVacant());
+        holder.t5.setText(String.valueOf(datalist.get(position).getVacant()));
     }
 
     @Override

@@ -15,10 +15,10 @@
             android:id="@+id/coronaDashboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:drawableRight="@drawable/ic_arrowforward"
             android:drawablePadding="16dp"
-            android:fontFamily="@font/armata"
+            android:fontFamily="@font/poppins"
             android:text="Corona Dashboard"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -29,14 +29,14 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="87dp"
+            android:layout_height="78dp"
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:mipmap/sym_def_app_icon" />
+            app:srcCompat="@mipmap/ic_logo3_foreground" />
 
         <TextView
             android:id="@+id/textView3"
@@ -47,12 +47,12 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="168dp"
             android:layout_marginRight="168dp"
-            android:fontFamily="@font/armata"
+            android:fontFamily="@font/poppins"
             android:text="Nagpur Corona"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.125"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
 

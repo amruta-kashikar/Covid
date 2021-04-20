@@ -143,8 +143,8 @@ public class RequestBed extends AppCompatActivity{
         spinnerHospital.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(RequestBed.this, "Position :"+position, Toast.LENGTH_LONG).show();
-                Log.e(TAG, "onItemSelected: "+position );
+                //Toast.makeText(RequestBed.this, "Position :"+position, Toast.LENGTH_LONG).show();
+                //Log.e(TAG, "onItemSelected: "+position );
                 hospitalId=hospitalSnapList.get(position).getId();
             }
 
@@ -157,7 +157,7 @@ public class RequestBed extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 timeVal = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(),timeVal,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(parent.getContext(),timeVal,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -169,7 +169,7 @@ public class RequestBed extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 symptomVal = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(),symptomVal,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(parent.getContext(),symptomVal,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -218,6 +218,7 @@ public class RequestBed extends AppCompatActivity{
                 //requestBed();
                 //saveImageDataToFirestore();
                 uploadImages(view);
+
                 //finish();
                 //startActivity(getIntent());
 
@@ -343,7 +344,6 @@ public class RequestBed extends AppCompatActivity{
                 Log.e("MainActivity:SaveData", e.getMessage());
             }
         });
-
 
     }
 
@@ -565,7 +565,21 @@ private static final String TAG = "RequestBed";
                 Log.e("MainActivity:SaveData", e.getMessage());
             }
         });
+        clearData();
 
+    }
+
+    private void clearData() {
+        patientName.getText().clear();
+        patientAge.getText().clear();
+        phoneNumber.getText().clear();
+        patientRelation.getText().clear();
+        patientGender.getText().clear();
+        spinnerTime.setAdapter(ArrayAdapter.createFromResource(this,R.array.time_array, android.R.layout.simple_spinner_dropdown_item));
+        spinnerSymptoms.setAdapter(ArrayAdapter.createFromResource(this,R.array.symptoms_array,android.R.layout.simple_spinner_dropdown_item));
+        spinnerHospital.setAdapter(new ArrayAdapter<String>(RequestBed.this,android.R.layout.simple_spinner_dropdown_item,names));
+        imagesList.clear();
+        adapter.notifyDataSetChanged();
     }
 
     private void verifyPermissionAndPickImage() {
