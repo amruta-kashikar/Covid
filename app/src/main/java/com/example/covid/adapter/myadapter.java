@@ -41,6 +41,11 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
         holder.t3.setText(datalist.get(position).getEmail());
         holder.t4.setText(datalist.get(position).getTotal());
         holder.t5.setText(String.valueOf(datalist.get(position).getVacant()));
+        holder.t6.setText(datalist.get(position).getArea());
+        holder.t7.setText(String.valueOf(datalist.get(position).getO2()));
+        holder.t8.setText(String.valueOf(datalist.get(position).getNonO2()));
+        holder.t9.setText(String.valueOf(datalist.get(position).getIcu()));
+        holder.t10.setText(String.valueOf(datalist.get(position).getVentilator()));
     }
 
     @Override
@@ -55,7 +60,7 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
 
     class myviewholder extends RecyclerView.ViewHolder {
 
-        TextView t1,t2,t3,t4,t5;
+        TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             t1 = itemView.findViewById(R.id.t1);
@@ -63,6 +68,11 @@ public class myadapter extends RecyclerView.Adapter<myadapter.myviewholder>
             t3 = itemView.findViewById(R.id.t3);
             t4 = itemView.findViewById(R.id.t4);
             t5 = itemView.findViewById(R.id.t5);
+            t6 = itemView.findViewById(R.id.t6);
+            t7 = itemView.findViewById(R.id.t7);
+            t8 = itemView.findViewById(R.id.t8);
+            t9 = itemView.findViewById(R.id.t9);
+            t10 = itemView.findViewById(R.id.t10);
         }
     }
 }

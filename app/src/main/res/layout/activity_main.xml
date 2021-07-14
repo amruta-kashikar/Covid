@@ -19,7 +19,7 @@
             android:drawableRight="@drawable/ic_arrowforward"
             android:drawablePadding="16dp"
             android:fontFamily="@font/poppins"
-            android:text="Corona Dashboard"
+            android:text="Covid-19 Dashboard"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

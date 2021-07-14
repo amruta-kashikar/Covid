@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/patientGender" />
+            app:layout_constraintTop_toBottomOf="@+id/patientArea" />
 
         <TextView
             android:id="@+id/textView4"
@@ -79,12 +79,33 @@
             android:drawablePadding="16dp"
             android:ems="10"
             android:hint="Patient's Gender"
-            android:inputType="textPersonName"
+            android:digits=" abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/patientRelation" />
+            app:layout_constraintTop_toBottomOf="@+id/patientRelation"
+            android:drawableLeft="@drawable/ic_person" />
+
+        <EditText
+            android:id="@+id/patientArea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/round_border"
+            android:digits=" abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
+            android:drawableStart="@drawable/ic_location"
+            android:drawableLeft="@drawable/ic_location"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:hint="Area"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientGender" />
 
         <View
             android:id="@+id/view7"
@@ -123,16 +144,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
             android:background="@drawable/round_border"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="16dp"
             android:ems="10"
             android:hint="Patient's Name"
-            android:inputType="textPersonName"
+            android:digits=" abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -175,6 +194,7 @@
             android:ems="10"
             android:hint="Phone Number"
             android:inputType="number"
+            android:maxLength="10"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -195,7 +215,7 @@
             android:drawablePadding="16dp"
             android:ems="10"
             android:hint="Relation with Patient"
-            android:inputType="textPersonName"
+            android:digits=" abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -208,7 +228,6 @@
             android:layout_width="268dp"
             android:layout_height="63dp"
             android:layout_marginTop="36dp"
-
             android:background="@drawable/round_border"
             android:paddingRight="1dp"
             android:text="select aadhar card and corona +ve certificate"
@@ -217,18 +236,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.111"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerHospital" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerTime" />
 
-        <Spinner
-            android:id="@+id/spinnerHospital"
-            android:layout_width="313dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="12dp"
-            android:spinnerMode="dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.387"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
 
         <Button
             android:id="@+id/requestBtn"
@@ -249,20 +259,7 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerView"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="299dp"
-            android:layout_marginRight="299dp"
-            android:text="Hospital List :"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.352"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerTime" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

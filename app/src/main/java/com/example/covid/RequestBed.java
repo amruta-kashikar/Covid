@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -75,7 +76,7 @@ public class RequestBed extends AppCompatActivity{
     FirebaseStorage storage;
     CollectionReference reference;
     int counter;
-    EditText patientName,patientAge,phoneNumber,patientRelation,patientGender;
+    EditText patientName,patientAge,phoneNumber,patientRelation,patientGender,patientArea;
     Button requestBtn,btnPickImages;
     FirebaseFirestore db;
     Intent patientdashb;
@@ -91,6 +92,7 @@ public class RequestBed extends AppCompatActivity{
         phoneNumber = findViewById(R.id.phoneNumber);
         patientRelation = findViewById(R.id.patientRelation);
         patientGender = findViewById(R.id.patientGender);
+        patientArea = findViewById(R.id.patientArea);
         requestBtn = findViewById(R.id.requestBtn);
         btnPickImages = findViewById(R.id.fabChooseImage);
         //reachingTime = findViewById(R.id.reachingTime);
@@ -100,12 +102,12 @@ public class RequestBed extends AppCompatActivity{
         storage = FirebaseStorage.getInstance();
         reference = db.collection("patient");
         //----for retrieving hospital names in spinner ----------
-        CollectionReference namesRef = db.collection("hospital");
+ /*       CollectionReference namesRef = db.collection("hospital");
         spinnerHospital = (Spinner) findViewById(R.id.spinnerHospital);
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item,names);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerHospital.setAdapter(adapter1);
+        spinnerHospital.setAdapter(adapter1);   */
         //spinnerHospital.setOnItemSelectedListener(this);
 
         //------ for spinner time ------
@@ -122,7 +124,7 @@ public class RequestBed extends AppCompatActivity{
         spinnerSymptoms.setAdapter(symptomsadapter);
 
         //------ spinner symptoms code ends----------
-
+/*
         namesRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -140,7 +142,9 @@ public class RequestBed extends AppCompatActivity{
             }
         });
 
-        spinnerHospital.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+ */
+ /*       spinnerHospital.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(RequestBed.this, "Position :"+position, Toast.LENGTH_LONG).show();
@@ -153,6 +157,8 @@ public class RequestBed extends AppCompatActivity{
 
             }
         });
+
+  */
         spinnerTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -251,6 +257,7 @@ public class RequestBed extends AppCompatActivity{
         String phone = phoneNumber.getText().toString().trim();
         String relation = patientRelation.getText().toString().trim();
         String gender = patientGender.getText().toString().trim();
+        String area = patientArea.getText().toString().trim();
         //String time = reachingTime.getText().toString().trim();
         //String condition = patientCondition.getText().toString().trim();
 
@@ -274,8 +281,9 @@ public class RequestBed extends AppCompatActivity{
             phoneNumber.requestFocus();
             return;
         }
-        if((phone.length()<10) || (phone.length()>10)){
-            phoneNumber.setError("Minimum phone number length should be 11 characters");
+
+        if(phone.length()!=10){
+            phoneNumber.setError("enter valid 10 digit mobile number,");
             phoneNumber.requestFocus();
             return;
         }
@@ -287,6 +295,11 @@ public class RequestBed extends AppCompatActivity{
         if (gender.isEmpty()){
             patientGender.setError("Enter gender");
             patientGender.requestFocus();
+            return;
+        }
+        if (area.isEmpty()){
+            patientArea.setError("Enter area");
+            patientArea.requestFocus();
             return;
         }
         /*
@@ -306,13 +319,14 @@ public class RequestBed extends AppCompatActivity{
         patient.put("phone",phone);
         patient.put("relation",relation);
         patient.put("gender",gender);
+        patient.put("area",area);
         patient.put("time",timeVal);
-        patient.put("hospitalId",hospitalId);
+        //patient.put("hospitalId",hospitalId);
         patient.put("timestamp",FieldValue.serverTimestamp());
         patient.put("symptoms",symptomVal);
 
-        //DocumentReference ref=FirebaseFirestore.getInstance().collection("hospital").document()
-       /* db.collection("patient")
+        //DocumentReference ref=FirebaseFirestore.getInstance().collection("hospital").document();
+        db.collection("patient")
                 .add(patient)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -325,9 +339,9 @@ public class RequestBed extends AppCompatActivity{
             public void onFailure(@NonNull @NotNull Exception e) {
                 Toast.makeText(RequestBed.this,"Failed to request for bed",Toast.LENGTH_SHORT).show();
             }
-        });*/
-        //startActivity(patientdashb);
-        WriteBatch batch=FirebaseFirestore.getInstance().batch();
+        });
+        startActivity(patientdashb);
+/*        WriteBatch batch=FirebaseFirestore.getInstance().batch();
         batch.set(hospitalRef.document(newId),patient,SetOptions.merge());
         batch.set(reference.document(newId),patient,SetOptions.merge());
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -344,6 +358,7 @@ public class RequestBed extends AppCompatActivity{
                 Log.e("MainActivity:SaveData", e.getMessage());
             }
         });
+ */
 
     }
 
@@ -406,7 +421,7 @@ public class RequestBed extends AppCompatActivity{
         }
     }
 
-private static final String TAG = "RequestBed";
+    private static final String TAG = "RequestBed";
     private void saveImageDataToFirestore() {
         /*ProgressDialog progressDialog=new ProgressDialog(RequestBed.this);
         progressDialog.show();
@@ -455,7 +470,7 @@ private static final String TAG = "RequestBed";
         ProgressDialog progressDialog=new ProgressDialog(RequestBed.this);
         progressDialog.setMessage("SendingData  ");
         progressDialog.show();
-        reference = db.collection("patient");
+ /*       reference = db.collection("patient");
         CollectionReference hospitalRef;
         if(hospitalId!=null){
             hospitalRef=FirebaseFirestore.getInstance().collection("hospital").document(hospitalId).collection("booking");
@@ -467,11 +482,14 @@ private static final String TAG = "RequestBed";
         }
         String newId=hospitalRef.document().getId();
 
+  */
+
         String name = patientName.getText().toString().trim();
         String age = patientAge.getText().toString().trim();
         String phone = phoneNumber.getText().toString().trim();
         String relation = patientRelation.getText().toString().trim();
         String gender = patientGender.getText().toString().trim();
+        String area = patientArea.getText().toString().trim();
         //String time = reachingTime.getText().toString().trim();
         //String condition = patientCondition.getText().toString().trim();
 
@@ -510,6 +528,11 @@ private static final String TAG = "RequestBed";
             patientGender.requestFocus();
             return;
         }
+        if(area.isEmpty()){
+            patientArea.setError("Enter area");
+            patientArea.requestFocus();
+            return;
+        }
         /* if (time.isEmpty()){
             reachingTime.setError("Enter time");
             reachingTime.requestFocus();
@@ -526,8 +549,9 @@ private static final String TAG = "RequestBed";
         patient.put("phone",phone);
         patient.put("relation",relation);
         patient.put("gender",gender);
+        patient.put("area",area);
         patient.put("time",timeVal);
-        patient.put("hospitalId",hospitalId);
+        //patient.put("hospitalId",hospitalId);
         patient.put("images",savedImagesUri );
         patient.put("timestamp",FieldValue.serverTimestamp());
         patient.put("symptoms",symptomVal);
@@ -548,7 +572,7 @@ private static final String TAG = "RequestBed";
             }
         });*/
         //startActivity(patientdashb);
-        WriteBatch batch=FirebaseFirestore.getInstance().batch();
+/*        WriteBatch batch=FirebaseFirestore.getInstance().batch();
         batch.set(hospitalRef.document(newId),patient,SetOptions.merge());
         batch.set(reference.document(newId),patient,SetOptions.merge());
         batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -565,6 +589,23 @@ private static final String TAG = "RequestBed";
                 Log.e("MainActivity:SaveData", e.getMessage());
             }
         });
+ */
+        reference.add(patient).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                progressDialog.dismiss();
+                coreHelper.createAlert("Success", "Images uploaded and saved successfully!", "OK", "", null, null, null);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                coreHelper.createAlert("Error", "Images uploaded but we couldn't save them to database.", "OK", "", null, null, null);
+                Log.e("MainActivity:SaveData", e.getMessage());
+            }
+        });
+
         clearData();
 
     }
@@ -575,9 +616,10 @@ private static final String TAG = "RequestBed";
         phoneNumber.getText().clear();
         patientRelation.getText().clear();
         patientGender.getText().clear();
+        patientArea.getText().clear();
         spinnerTime.setAdapter(ArrayAdapter.createFromResource(this,R.array.time_array, android.R.layout.simple_spinner_dropdown_item));
         spinnerSymptoms.setAdapter(ArrayAdapter.createFromResource(this,R.array.symptoms_array,android.R.layout.simple_spinner_dropdown_item));
-        spinnerHospital.setAdapter(new ArrayAdapter<String>(RequestBed.this,android.R.layout.simple_spinner_dropdown_item,names));
+//        spinnerHospital.setAdapter(new ArrayAdapter<String>(RequestBed.this,android.R.layout.simple_spinner_dropdown_item,names));
         imagesList.clear();
         adapter.notifyDataSetChanged();
     }

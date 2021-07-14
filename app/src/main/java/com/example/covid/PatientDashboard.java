@@ -73,9 +73,17 @@ public class PatientDashboard extends AppCompatActivity {
     private void filter(String text) {
         ArrayList<hospitalModel> filterList = new ArrayList<>();
         for (hospitalModel item: datalist){
-            if (item.getName().toLowerCase().contains(text.toLowerCase())){
+            if (item.getName().toLowerCase().contains(text.toLowerCase()) ||item.getArea().toLowerCase().contains(text.toLowerCase()) ){
                 filterList.add(item);
             }
+/*
+            else{
+                if(item.getArea().toLowerCase().contains(text.toLowerCase())){
+                    filterList.add(item);
+                }
+
+            }
+*/
         }
         adapter.filteredList(filterList);
 

@@ -1,14 +1,20 @@
 package com.example.covid;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.covid.model.hospitalModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +40,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        network();
+    }
+
+    public void network()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if(networkInfo != null && networkInfo.isConnected()==true)
+        {
+            startActivity();
+        }
+        else
+        {
+            Toast.makeText(this, "Please connect to internet", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void startActivity()
+    {
         Requestbtn = findViewById(R.id.btnRequest);
 
         //db=FirebaseFirestore.getInstance();
@@ -48,10 +74,8 @@ public class MainActivity extends AppCompatActivity {
         vacantCount = findViewById(R.id.vacantCount);
         occupiedCount = findViewById(R.id.occupiedCount);
         db = FirebaseFirestore.getInstance();
-        // now  one problm may arise
-        // your total is string? yes ohh so sad.
         refer = db.collection("hospital");
-        // can you show me table hospital? yes
+
 
         Requestbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
         refer.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-               // now let's fix that error you told me ya
-               int vacantsum=0,totalsum=0,occupiedsum=0;
+                // now let's fix that error you told me ya
+                int vacantsum=0,totalsum=0,occupiedsum=0;
                 List<DocumentSnapshot> list1 = queryDocumentSnapshots.getDocuments();
                 for(DocumentSnapshot ds : list1)
                 {
@@ -120,10 +144,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-        
         coronaDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
